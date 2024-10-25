@@ -7,17 +7,16 @@ generator client {
 datasource db {
   provider          = "mysql"
   url               = env("DATABASE_URL")
-  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 // 유저 테이블
-model User {
+model Story {
   id          Int       @id @default(autoincrement())
   createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @default(now()) @updatedAt
-  name        String
-  phoneNumber String // 전화번호
-  adminMemo   String?
-  isDeleted   Boolean   @default(false) // 삭제 여부
-  deletedAt   DateTime? // 회원 탈퇴일
+  validTime   Int
+  title       String
+  author      String
+  image       String
+  hashtags    Json
 }
